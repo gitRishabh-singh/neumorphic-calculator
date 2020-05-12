@@ -1,0 +1,120 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+        <form name="form">
+            <input class="area" class="textview" name="textview">
+        </form>
+        <table>
+            <tr>
+                <td><input class="btn" type="button" value="C" onclick="clean()"></td>
+                <td><input class="btn" type="button" value="<" onclick="back()"></td>
+                <td><input class="btn" type="button" value="/" onclick="insert('/')"></td>
+                <td><input class="btn" type="button" value="x" onclick="insert('*')"></td>
+            </tr>
+            <tr>
+                <td><input class="btn" type="button" value="7" onclick="insert(7)"></td>
+                <td><input class="btn" type="button" value="8" onclick="insert(8)"></td>
+                <td><input class="btn" type="button" value="9" onclick="insert(9)"></td>
+                <td><input class="btn" type="button" value="-" onclick="insert('-')"></td>
+            </tr>
+            <tr>
+                <td><input class="btn" type="button" value="4" onclick="insert(4)"></td>
+                <td><input class="btn" type="button" value="5" onclick="insert(5)"></td>
+                <td><input class="btn" type="button" value="6" onclick="insert(6)"></td>
+                <td><input class="btn" type="button" value="+" onclick="insert('+')"></td>
+            </tr>
+            <tr>
+                <td><input class="btn" type="button" value="1" onclick="insert(1)"></td>
+                <td><input class="btn" type="button" value="2" onclick="insert(2)"></td>
+                <td><input class="btn" type="button" value="3" onclick="insert(3)"></td>
+                <td rowspan="2" ><input class="btn" style="height: 120;" type="button" value="=" onclick="equalTo()"></td>
+            </tr>
+            <tr>
+                <td colspan="2"><input class="btn" style="width: 120;" type="button" value="0" onclick="insert(0)"></td>
+                <td><input class="btn" type="button" value="." onclick="insert('.')"></td>
+            </tr>
+        </table>
+    </div>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #1a1b1e;
+            height: 100vh;
+            width: 100vw;
+        }
+
+        .container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .area {
+            width: 100%;
+            height: 60px;
+            outline: none;
+            border: 0;
+            background-color: #1a1b1e;
+            box-shadow: -3px -3px 3px #242529,
+                3px 3px 3px #151518;
+            color: #7CEC9F;
+            padding: 5px;
+            font-size: 18px;
+            letter-spacing: 4px;
+
+        }
+
+        .btn {
+            width: 50px;
+            height: 50px;
+            outline: none;
+            border: 0;
+            background-color: #1a1b1e;
+            box-shadow: -3px -3px 3px #242529,
+                3px 3px 3px #151518;
+            color: #deeaf6;
+            border-radius: 2px;
+            margin: 0.5rem;
+
+        }
+
+        .btn:hover {
+            box-shadow: -3px -3px 3px #242529 inset,
+                3px 3px 3px #151518 inset;
+                color: #7CEC9F;
+        }
+    </style>
+    <script>
+        function insert(num) {
+            document.form.textview.value = document.form.textview.value + num;
+        }
+
+        function equalTo() {
+            var res = document.form.textview.value;
+            if (res) {
+                document.form.textview.value = eval(res);
+            }
+        }
+
+        function clean() {
+            document.form.textview.value = "";
+        }
+
+        function back() {
+            var res = document.form.textview.value;
+            document.form.textview.value = res.substring(0, res.length - 1);
+
+        }
+    </script>
+</body>
+
+</html>
