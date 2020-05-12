@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="jquery-2.1.4.js"></script>
 </head>
 
 <body>
@@ -34,13 +36,15 @@
                 <td><input class="btn" type="button" value="1" onclick="insert(1)"></td>
                 <td><input class="btn" type="button" value="2" onclick="insert(2)"></td>
                 <td><input class="btn" type="button" value="3" onclick="insert(3)"></td>
-                <td rowspan="2" ><input class="btn" style="height: 120;" type="button" value="=" onclick="equalTo()"></td>
+                <td rowspan="2"><input class="btn" style="height: 120;" type="button" value="=" onclick="equalTo()">
+                </td>
             </tr>
             <tr>
                 <td colspan="2"><input class="btn" style="width: 120;" type="button" value="0" onclick="insert(0)"></td>
                 <td><input class="btn" type="button" value="." onclick="insert('.')"></td>
             </tr>
         </table>
+        <div class="toggle"></div>
     </div>
     <style>
         body {
@@ -49,6 +53,42 @@
             background-color: #1a1b1e;
             height: 100vh;
             width: 100vw;
+        }
+
+        .toggle {
+            position: absolute;
+            top: 110%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #deeaf6;
+            border: 2px solid #1a1b1e;
+            width: 80px;
+            height: 35px;
+            cursor: pointer;
+            border-radius: 20px;
+            transition: 0.8s;
+        }
+
+        .toggle.active {
+            background: #1a1b1e;
+            border: 2px solid #1a1b1e;
+        }
+
+        .toggle::before {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 30px;
+            height: 30px;
+            background: #1a1b1e;
+            border-radius: 50%;
+            transition: 0.6s;
+        }
+
+        .toggle.active::before {
+            left: 48px;
+            background: #deeaf6;
         }
 
         .container {
@@ -70,6 +110,7 @@
             padding: 5px;
             font-size: 18px;
             letter-spacing: 4px;
+            cursor: not-allowed;
 
         }
 
@@ -84,14 +125,40 @@
             color: #deeaf6;
             border-radius: 2px;
             margin: 0.5rem;
+            cursor: pointer;
 
         }
 
         .btn:hover {
             box-shadow: -3px -3px 3px #242529 inset,
                 3px 3px 3px #151518 inset;
-                color: #7CEC9F;
+            color: #7CEC9F;
         }
+
+        body.day-mode {
+            background-color: #deeaf6;
+        }
+
+        body.day-mode .btn {
+            background-color: #deeaf6;
+            box-shadow: -3px -3px 3px #f3f9ff,
+                3px 3px 3px #becbd8;
+            color: #1a1b1e;
+        }
+
+        body.day-mode .btn:hover {
+            box-shadow: -3px -3px 3px #f3f9ff inset,
+                3px 3px 3px #becbd8 inset;
+            color: #218F76;
+        }
+
+        body.day-mode .area {
+            background-color: #deeaf6;
+            box-shadow: -3px -3px 3px #f3f9ff,
+                3px 3px 3px #becbd8;
+            color: #218F76;
+        }
+        
     </style>
     <script>
         function insert(num) {
@@ -114,6 +181,19 @@
             document.form.textview.value = res.substring(0, res.length - 1);
 
         }
+
+        function Sidebar() {
+            document.getElementById("Sidebar").classList.toggle('active');
+        }
+        $(document).ready(function () {
+            $(".toggle").click(function () {
+                $(".toggle").toggleClass("active")
+                $("body").toggleClass("day-mode")
+            })
+        })
+        $(document).ready(function () {
+            $('[data-toggle="popover"]').popover();
+        });
     </script>
 </body>
 
