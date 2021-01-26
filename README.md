@@ -20,5 +20,5 @@ for light design {
 Dev: Rishabh Singh
 IG: rishabhsingh03 
 
-Codes Output: https://gitrishabh-singh.github.io/neumorphic-calculator/
+Codes Output: https://alphaion.github.io/neumorphic-calculator/
 
